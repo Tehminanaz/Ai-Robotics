@@ -1,0 +1,90 @@
+# General
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/
+*.log
+.env
+.env.*
+*.log.*
+
+# Node.js/JavaScript/TypeScript
+node_modules/
+dist/
+build/
+coverage/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+dist/
+*.egg-info/
+
+# C++
+build/
+bin/
+obj/
+out/
+*.o
+*.so
+*.a
+*.exe
+*.dll
+
+# ROS 2
+install/
+log/
+
+# Isaac Sim
+isaac_sim_projects/.bashrc
+isaac_sim_projects/.user.toml
+isaac_sim_projects/data/
+isaac_sim_projects/logs/
+isaac_sim_projects/omniverse/
+isaac_sim_projects/kit/
+isaac_sim_projects/exts/
+isaac_sim_projects/app/
+isaac_sim_projects/*.usd
+
+# ROS 2 (additional specific paths)
+robotics_sims/ros2_ws/build/
+robotics_sims/ros2_ws/install/
+robotics_sims/ros2_ws/log/
+
+# Tool-specific patterns
+.dockerignore
+.eslintignore
+.prettierignore
+.pytest_cache/
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Terraform (if applicable)
+.terraform/
+*.tfstate*
+*.tfvars
+.terraform.lock.hcl
+
+# Kubernetes/k8s (if applicable)
+*.secret.yaml
+secrets/
+.kube/
+kubeconfig*
+*.key
+*.crt
+
+# General additional
+*~
+.#*
+*.bak
+*.orig
+*.swp
+*.swo
+*.swn
+*.swn
+coverage/

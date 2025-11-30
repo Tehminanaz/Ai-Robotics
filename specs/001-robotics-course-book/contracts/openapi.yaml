@@ -1,0 +1,339 @@
+openapi: 3.0.0
+info:
+  title: Physical AI & Humanoid Robotics Learning Platform API
+  version: 1.0.0
+  description: API for user management, course progress, personalization, and RAG chatbot interaction for the Physical AI & Humanoid Robotics learning platform.
+
+servers:
+  - url: /api/v1
+    description: Primary API server
+
+tags:
+  - name: Auth
+    description: User authentication and authorization operations
+  - name: Users
+    description: User profile and management operations
+  - name: Courses
+    description: Course enrollment and progress tracking
+  - name: Chatbot
+    description: RAG Chatbot interaction
+
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - email
+                - password
+              properties:
+                username:
+                  type: string
+                  example: learner_one
+                email:
+                  type: string
+                  format: email
+                  example: learner@example.com
+                password:
+                  type: string
+                  format: password
+                  example: SuperSecurePa$$w0rd!
+      responses:
+        '201':
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User registered successfully
+                  user_id:
+                    type: string
+                    format: uuid
+        '400':
+          description: Invalid input or user already exists
+
+  /auth/login:
+    post:
+      summary: Authenticate user and get access token
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: learner@example.com
+                password:
+                  type: string
+                  format: password
+                  example: SuperSecurePa$$w0rd!
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                    example: bearer
+        '401':
+          description: Invalid credentials
+
+  /users/{user_id}:
+    get:
+      summary: Get user profile
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: ID of the user to retrieve
+      responses:
+        '200':
+          description: User profile data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: string
+                    format: uuid
+                  username:
+                    type: string
+                  email:
+                    type: string
+                  profile_data:
+                    type: object
+                    nullable: true
+        '404':
+          description: User not found
+    put:
+      summary: Update user profile
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: ID of the user to update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: new_learner_name
+                profile_data:
+                  type: object
+                  example:
+                    learning_style: visual
+                    background: intermediate
+                    preferred_language: en
+      responses:
+        '200':
+          description: User profile updated successfully
+        '400':
+          description: Invalid input
+        '404':
+          description: User not found
+
+  /courses/{course_id}/enroll:
+    post:
+      summary: Enroll a user in a course
+      tags:
+        - Courses
+      parameters:
+        - in: path
+          name: course_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: ID of the course to enroll in
+      responses:
+        '201':
+          description: User enrolled successfully
+        '400':
+          description: User already enrolled or course not found
+
+  /courses/{course_id}/progress:
+    get:
+      summary: Get user's progress in a course
+      tags:
+        - Courses
+      parameters:
+        - in: path
+          name: course_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: ID of the course
+      responses:
+        '200':
+          description: Course progress data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  completion_status:
+                    type: string
+                    enum: [in_progress, completed, dropped]
+                  progress_data:
+                    type: object
+        '404':
+          description: Enrollment not found
+    put:
+      summary: Update user's progress in a course
+      tags:
+        - Courses
+      parameters:
+        - in: path
+          name: course_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: ID of the course
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                chapter_id:
+                  type: string
+                  format: uuid
+                  description: ID of the chapter completed or in progress
+                status:
+                  type: string
+                  enum: [completed, in_progress]
+                score:
+                  type: integer
+                  nullable: true
+                  description: Score for a lab/assignment, if applicable
+      responses:
+        '200':
+          description: Course progress updated successfully
+        '400':
+          description: Invalid input
+        '404':
+          description: Enrollment not found
+
+  /chatbot/query:
+    post:
+      summary: Send a query to the RAG chatbot
+      tags:
+        - Chatbot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - query
+                - user_id
+              properties:
+                query:
+                  type: string
+                  example: "What are the key concepts in Embodied AI?"
+                user_id:
+                  type: string
+                  format: uuid
+                  description: User ID for personalization context
+      responses:
+        '200':
+          description: Chatbot response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: string
+                    example: "Embodied AI focuses on agents that interact with physical or simulated environments..."
+                  sources:
+                    type: array
+                    items:
+                      type: string
+                      example: "Chapter 2: Embodied AI Overview"
+        '400':
+          description: Invalid query or user ID
+
+  /chatbot/feedback:
+    post:
+      summary: Provide feedback on a chatbot response
+      tags:
+        - Chatbot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - query
+                - response
+                - user_id
+                - rating
+              properties:
+                query:
+                  type: string
+                  example: "What are the key concepts in Embodied AI?"
+                response:
+                  type: string
+                  example: "Embodied AI focuses on agents that interact with physical or simulated environments..."
+                user_id:
+                  type: string
+                  format: uuid
+                rating:
+                  type: integer
+                  minimum: 1
+                  maximum: 5
+                  description: User rating (1-5) for the response quality
+                comments:
+                  type: string
+                  nullable: true
+                  example: "The response was helpful but missed some details."
+      responses:
+        '200':
+          description: Feedback received successfully
+        '400':
+          description: Invalid input

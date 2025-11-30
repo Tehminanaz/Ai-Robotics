@@ -1,0 +1,37 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "asyncpg>=0.31.0",
+    "fastapi>=0.122.0",
+    "langchain>=1.1.0",
+    "langchain-openai>=1.1.0",
+    "python-dotenv>=1.2.1",
+    "qdrant-client>=1.16.1",
+    "sqlalchemy>=2.0.44",
+    "uvicorn>=0.38.0",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py313"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "W", "F", "I", "C", "N", "D"]
+ignore = ["D100", "D104"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "C", "N", "D"]
+ignore = ["D100", "D104"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+
