@@ -2,7 +2,7 @@ fastapi
 uvicorn
 sqlalchemy
 psycopg2-binary
-qdrant-client
+qdrant-client>=1.16.1
 loguru
 python-dotenv
 pydantic-settings
