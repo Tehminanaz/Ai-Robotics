@@ -79,6 +79,7 @@ kubeconfig*
 *.crt
 
 # General additional
+specs/001-fastapi-rag-service/
 *~
 .#*
 *.bak
@@ -88,3 +89,4 @@ kubeconfig*
 *.swn
 *.swn
 coverage/
+.docusaurus/
