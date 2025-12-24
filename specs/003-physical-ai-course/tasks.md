@@ -21,13 +21,13 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create base project directories: `frontend/`, `backend/`, `tests/`
-- [ ] T002 Initialize Docusaurus project in `frontend/` by running `npx @docusaurus/init@latest website classic --typescript` within the `frontend/` directory.
-- [ ] T003 Initialize FastAPI project in `backend/` by creating a `main.py` and `requirements.txt` with `fastapi` and `uvicorn`.
-- [ ] T004 [P] Configure Python environment for `backend/`: Create `venv`, install `pip-tools`, `fastapi`, `uvicorn`, `qdrant-client`, `langchain`, `langchain-openai`, `openai`, `psycopg2-binary`, `python-dotenv`, `pydantic-settings`, `loguru`.
-- [ ] T005 [P] Configure JavaScript/TypeScript environment for `frontend/`: Install Node.js, npm/yarn, and Docusaurus dependencies including ChatKit UI framework.
-- [ ] T006 [P] Configure linting (ESLint, Black) and formatting (Prettier) tools: Add configuration files `.eslintrc.js`, `.prettierrc`, `pyproject.toml` for Black in `frontend/` and `backend/`.
-- [ ] T007 [P] Configure Context7 MCP server: Set up MCP server configuration for accessing OpenAI Agents SDK and ChatKit, store API keys securely in environment variables.
+- [x] T001 Create base project directories: `frontend/`, `backend/`, `tests/`
+- [x] T002 Initialize Docusaurus project in `frontend/` by running `npx @docusaurus/init@latest website classic --typescript` within the `frontend/` directory.
+- [x] T003 Initialize FastAPI project in `backend/` by creating a `main.py` and `requirements.txt` with `fastapi` and `uvicorn`.
+- [x] T004 [P] Configure Python environment for `backend/`: Create `venv`, install `pip-tools`, `fastapi`, `uvicorn`, `qdrant-client`, `langchain`, `langchain-openai`, `openai`, `psycopg2-binary`, `python-dotenv`, `pydantic-settings`, `loguru`.
+- [x] T005 [P] Configure JavaScript/TypeScript environment for `frontend/`: Install Node.js, npm/yarn, and Docusaurus dependencies including ChatKit UI framework.
+- [x] T006 [P] Configure linting (ESLint, Black) and formatting (Prettier) tools: Add configuration files `.eslintrc.js`, `.prettierrc`, `pyproject.toml` for Black in `frontend/` and `backend/`.
+- [x] T007 [P] Configure Context7 MCP server: Set up MCP server configuration for accessing OpenAI Agents SDK and ChatKit, store API keys securely in environment variables.
 
 ---
 
@@ -37,13 +37,13 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T007 Setup Neon DB (PostgreSQL) instance: Create an account, provision a new database, retrieve connection string, and store securely in environment variables (e.g., `.env` in `backend/`).
-- [ ] T008 Configure database connection in `backend/src/db/database.py` using `SQLAlchemy` and `psycopg2-binary` for Neon DB.
-- [ ] T009 Setup Qdrant vector database instance: Create a Qdrant Cloud account, obtain API key and URL, store securely in environment variables (e.g., `.env` in `backend/`).
-- [ ] T010 Configure Qdrant client in `backend/src/db/qdrant_client.py` for textbook embeddings with collection schema for course content.
-- [ ] T011 Implement base API routing and middleware structure: Define `APIRouter` instances in `backend/src/api/v1/` and include them in `backend/src/main.py`. Add basic CORS middleware for Docusaurus integration.
-- [ ] T012 Configure logging (e.g., `loguru`) and error handling (e.g., custom `HTTPException` handlers) infrastructure for `backend/src/utils/`.
-- [ ] T013 Setup Context7 MCP server connection: Configure MCP client in `backend/src/services/context7_client.py` to access OpenAI Agents SDK and ChatKit.
+- [x] T007 Setup Neon DB (PostgreSQL) instance: Create an account, provision a new database, retrieve connection string, and store securely in environment variables (e.g., `.env` in `backend/`).
+- [x] T008 Configure database connection in `backend/src/db/database.py` using `SQLAlchemy` and `psycopg2-binary` for Neon DB.
+- [x] T009 Setup Qdrant vector database instance: Create a Qdrant Cloud account, obtain API key and URL, store securely in environment variables (e.g., `.env` in `backend/`).
+- [x] T010 Configure Qdrant client in `backend/src/db/qdrant_client.py` for textbook embeddings with collection schema for course content.
+- [x] T011 Implement base API routing and middleware structure: Define `APIRouter` instances in `backend/src/api/v1/` and include them in `backend/src/main.py`. Add basic CORS middleware for Docusaurus integration.
+- [x] T012 Configure logging (e.g., `loguru`) and error handling (e.g., custom `HTTPException` handlers) infrastructure for `backend/src/utils/`.
+- [x] T013 Setup Context7 MCP server connection: Configure MCP client in `backend/src/services/context7_client.py` to access OpenAI Agents SDK and ChatKit.
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -57,10 +57,10 @@
 
 ### Implementation for User Story 1
 
-- [ ] T015 [P] [US1] Create Docusaurus structure for Module 1 in `frontend/src/docs/module1/` including `_category_.json`.
-- [ ] T016 [P] [US1] Draft content for Module 1, Chapter 1: Overview of Embodied AI and Physical Intelligence in `frontend/src/docs/module1/chapter1.md` (min 1500 words, include definitions, history, challenges, reactive vs deliberative AI, early robot examples).
-- [ ] T017 [P] [US1] Draft content for Module 1, Chapter 2: Robotics Fundamentals: Kinematics and Dynamics in `frontend/src/docs/module1/chapter2.md` (min 2000 words, include DOF, joint types, Jacobian, Euler-Lagrange, KUKA/ABB examples, 2-DOF arm kinematics, simple pendulum dynamics).
-- [ ] T018 [P] [US1] Draft content for Module 1, Chapter 3: Introduction to ROS 2: Architecture and Core Concepts in `frontend/src/docs/module1/chapter3.md` (min 1800 words, include ROS 2 nodes, topics, services, actions, DDS, QoS, rclpy/rclcpp, mobile robot example).
+- [x] T015 [P] [US1] Create Docusaurus structure for Module 1 in `frontend/src/docs/module1/` including `_category_.json`.
+- [x] T016 [P] [US1] Draft content for Module 1, Chapter 1: Overview of Embodied AI and Physical Intelligence in `frontend/src/docs/module1/chapter1.md` (min 1500 words, include definitions, history, challenges, reactive vs deliberative AI, early robot examples).
+- [x] T017 [P] [US1] Draft content for Module 1, Chapter 2: Robotics Fundamentals: Kinematics and Dynamics in `frontend/src/docs/module1/chapter2.md` (min 2000 words, include DOF, joint types, Jacobian, Euler-Lagrange, KUKA/ABB examples, 2-DOF arm kinematics, simple pendulum dynamics).
+- [x] T018 [P] [US1] Draft content for Module 1, Chapter 3: Introduction to ROS 2: Architecture and Core Concepts in `frontend/src/docs/module1/chapter3.md` (min 1800 words, include ROS 2 nodes, topics, services, actions, DDS, QoS, rclpy/rclcpp, mobile robot example).
 - [ ] T019 [P] [US1] Draft content for Module 1, Chapter 4: Gazebo Simulation for Robotics Development in `frontend/src/docs/module1/chapter4.md` (min 1800 words, include virtual environments, URDF/SDF, physics engines, plugins, custom URDF design, spawning in Gazebo).
 - [ ] T020 [P] [US1] Draft content for Module 1, Chapter 5: Setting up Your Robotics Development Environment in `frontend/src/docs/module1/chapter5.md` (min 1200 words, include Linux, Python/C++, VS Code, Git, development environment concepts, toolchain overview, best practices).
 - [ ] T021 [P] [US1] Draft content for Module 1, Chapter 6: Basic Robot Navigation with ROS 2 in `frontend/src/docs/module1/chapter6.md` (min 1500 words, include localization, SLAM, path planning, odometry, laser scan, occupancy grid, A* planner, TurtleBot example, navigation concepts).
@@ -105,8 +105,8 @@
 - [ ] T038 [P] [US3] Draft content for Module 3, Chapter 16: Reinforcement Learning for Complex Robotics Tasks in `frontend/src/docs/module3/chapter16.md` (min 2000 words, include PPO, SAC, reward function design, sim-to-real, MDPs, policy gradients, robot grasping example, RL theory).
 - [ ] T039 [P] [US3] Draft content for Module 3, Chapter 17: Cloud Robotics: Distributed Systems and AI at Scale in `frontend/src/docs/module3/chapter17.md` (min 1800 words, include cloud platforms, ROS in cloud, microservices, fleet management, cloud data analytics, architecture patterns).
 - [ ] T040 [P] [US3] Draft content for Module 3, Chapter 18: Edge Deployment and Real-World Robotics in `frontend/src/docs/module3/chapter18.md` (min 1800 words, include edge devices, NVIDIA Jetson, TensorFlow Lite, OpenVINO, power efficiency, real-time inference, deployment strategies).
-- [ ] T041 [US3] Implement content ingestion pipeline: Create script in `backend/src/utils/ingest.py` to load course content from markdown files, chunk text intelligently (preserving chapter/section context), generate embeddings using OpenAI API, and upload to Qdrant vector database with metadata (chapter, section, page).
-- [ ] T042 [US3] Implement RAG service with OpenAI Agents SDK: Create `backend/src/services/rag_service.py` using Context7 MCP to access OpenAI Agents SDK, implement semantic search against Qdrant, generate responses with source citations, handle conversation context.
+- [x] T041 [US3] Implement content ingestion pipeline: Create script in `backend/src/utils/ingest.py` to load course content from markdown files, chunk text intelligently (preserving chapter/section context), generate embeddings using OpenAI API, and upload to Qdrant vector database with metadata (chapter, section, page).
+- [x] T042 [US3] Implement RAG service with OpenAI Agents SDK: Create `backend/src/services/rag_service.py` using Context7 MCP to access OpenAI Agents SDK, implement semantic search against Qdrant, generate responses with source citations, handle conversation context.
 - [ ] T043 [US3] Create FastAPI chatbot endpoints: Implement endpoints in `backend/src/api/v1/chatbot.py` for:
   - POST `/api/v1/chat/query` - Process user questions
   - POST `/api/v1/chat/query-highlighted` - Process questions with highlighted text context

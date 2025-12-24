@@ -5,6 +5,7 @@ import os
 load_dotenv() # Load environment variables from .env file
 
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from qdrant_client import QdrantClient
 from loguru import logger
@@ -12,11 +13,30 @@ from loguru import logger
 from backend.config.database import get_db
 from backend.vector_db.qdrant_client import get_qdrant_client
 from backend.utils.logger_config import configure_logging
+from backend.api.ingestion import router as ingestion_router
+from backend.api.chatbot import router as chatbot_router
+from backend.api.personalization import router as personalization_router
+from backend.api.auth import router as auth_router
 
 # Configure logging at application startup
 configure_logging()
 
 app = FastAPI()
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, replace with specific origins
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Include API routers
+app.include_router(ingestion_router, prefix="/api/v1", tags=["ingestion"])
+app.include_router(chatbot_router, prefix="/api/v1", tags=["chatbot"])
+app.include_router(personalization_router, prefix="/api/v1", tags=["personalization"])
+app.include_router(auth_router, prefix="/api/v1", tags=["auth"])
 
 # Global exception handler
 @app.exception_handler(Exception)
@@ -29,6 +49,10 @@ async def global_exception_handler(request: Request, exc: Exception):
             "detail": str(exc),
         },
     )
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
 
 @app.get("/")
 async def root():
