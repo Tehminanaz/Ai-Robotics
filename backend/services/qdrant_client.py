@@ -2,10 +2,10 @@ from qdrant_client import QdrantClient
 import os
 
 QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
-QDRANT_CLUSTER_URL = os.getenv("QDRANT_CLUSTER_URL")
+QDRANT_URL = os.getenv("QDRANT_URL")
 
 qdrant_client = QdrantClient(
-    url=QDRANT_CLUSTER_URL,
+    url=QDRANT_URL,
     api_key=QDRANT_API_KEY,
 )
 

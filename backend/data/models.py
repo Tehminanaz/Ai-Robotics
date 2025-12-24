@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 from sqlalchemy import Column, String, DateTime, Text
 from sqlalchemy.dialects.postgresql import UUID, ARRAY, JSONB
 
-from src.data.database import Base
+from .database import Base
 
 # SQLAlchemy models
 class ContentORM(Base):
@@ -92,3 +92,14 @@ class Response(ResponseBase):
 
     class Config:
         orm_mode = True
+
+# Ingestion models
+class IngestRequest(BaseModel):
+    source_url: Optional[str] = None
+    text_content: str
+    content_metadata: Optional[Dict[str, Any]] = None
+
+class IngestResponse(BaseModel):
+    status: str
+    content_id: uuid.UUID
+    message: str

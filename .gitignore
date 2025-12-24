@@ -9,6 +9,8 @@ Thumbs.db
 .env
 .env.*
 *.log.*
+nul
+
 
 # Node.js/JavaScript/TypeScript
 node_modules/

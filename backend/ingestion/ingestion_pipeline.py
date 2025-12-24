@@ -5,10 +5,10 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from qdrant_client import QdrantClient, models
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.data.models import ContentCreate, ContentORM
-from src.embeddings.openai import generate_embeddings
-from src.services.qdrant_client import get_qdrant_client
-from src.services import content_service
+from backend.data.models import ContentCreate, ContentORM
+from backend.embeddings.openai import generate_embeddings
+from backend.services.qdrant_client import get_qdrant_client
+from backend.services.content_service import create_content
 
 COLLECTION_NAME = "rag_content"
 
@@ -25,7 +25,7 @@ async def process_and_ingest_content(
     db: AsyncSession, content_create: ContentCreate
 ) -> ContentORM:
     # 1. Store content metadata in Neon Postgres
-    db_content = await content_service.create_content(db, content_create)
+    db_content = await create_content(db, content_create)
 
     # 2. Text extraction and chunking
     text_splitter = RecursiveCharacterTextSplitter(
